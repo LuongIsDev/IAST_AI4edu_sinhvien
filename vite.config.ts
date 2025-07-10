@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/IAST_AI4edu_sinhvien/' : '/',
+  base: '/IAST_AI4edu_sinhvien/', 
 
   // <-- DÒNG CẦN THÊM
   server: {
