@@ -5,12 +5,13 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/IAST_AI4edu_sinhvien/', 
-
-  // <-- DÒNG CẦN THÊM
+  base: '/IAST_AI4edu_sinhvien/',
   server: {
     host: "::",
     port: 8080,
+  },
+  build: {
+    minify: false, // <--- Thêm dòng này
   },
   plugins: [
     react(),
