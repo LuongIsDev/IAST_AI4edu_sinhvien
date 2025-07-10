@@ -5,7 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/IAST_virtual-class-avatar-creator/',  // <-- DÒNG CẦN THÊM
+  base: mode === 'production' ? 'https://github.com/LuongIsDev/IAST_AI4edu_sinhvien.git' : '/',
+
+  // <-- DÒNG CẦN THÊM
   server: {
     host: "::",
     port: 8080,
