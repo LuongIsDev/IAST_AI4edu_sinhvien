@@ -7100,33 +7100,6 @@ var Action$1;
   Action2["Replace"] = "REPLACE";
 })(Action$1 || (Action$1 = {}));
 const PopStateEventType = "popstate";
-function createBrowserHistory(options) {
-  if (options === void 0) {
-    options = {};
-  }
-  function createBrowserLocation(window2, globalHistory) {
-    let {
-      pathname,
-      search,
-      hash
-    } = window2.location;
-    return createLocation(
-      "",
-      {
-        pathname,
-        search,
-        hash
-      },
-      // state defaults to `null` because `window.history.state` does
-      globalHistory.state && globalHistory.state.usr || null,
-      globalHistory.state && globalHistory.state.key || "default"
-    );
-  }
-  function createBrowserHref(window2, to) {
-    return typeof to === "string" ? to : createPath(to);
-  }
-  return getUrlBasedHistory(createBrowserLocation, createBrowserHref, null, options);
-}
 function createHashHistory(options) {
   if (options === void 0) {
     options = {};
@@ -8329,42 +8302,6 @@ try {
 }
 const START_TRANSITION = "startTransition";
 const startTransitionImpl = React[START_TRANSITION];
-function BrowserRouter(_ref4) {
-  let {
-    basename,
-    children,
-    future,
-    window: window2
-  } = _ref4;
-  let historyRef = reactExports.useRef();
-  if (historyRef.current == null) {
-    historyRef.current = createBrowserHistory({
-      window: window2,
-      v5Compat: true
-    });
-  }
-  let history = historyRef.current;
-  let [state, setStateImpl] = reactExports.useState({
-    action: history.action,
-    location: history.location
-  });
-  let {
-    v7_startTransition
-  } = future || {};
-  let setState = reactExports.useCallback((newState) => {
-    v7_startTransition && startTransitionImpl ? startTransitionImpl(() => setStateImpl(newState)) : setStateImpl(newState);
-  }, [setStateImpl, v7_startTransition]);
-  reactExports.useLayoutEffect(() => history.listen(setState), [history, setState]);
-  reactExports.useEffect(() => logV6DeprecationWarnings(future), [future]);
-  return /* @__PURE__ */ reactExports.createElement(Router, {
-    basename,
-    children,
-    location: state.location,
-    navigationType: state.action,
-    navigator: history,
-    future
-  });
-}
 function HashRouter(_ref5) {
   let {
     basename,
@@ -44902,7 +44839,7 @@ const queryClient = new QueryClient();
 const App = () => /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TooltipProvider, { children: [
   /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster$1, {}),
   /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, {}),
-  /* @__PURE__ */ jsxRuntimeExports.jsx(BrowserRouter, { basename: "/IAST_AI4edu_sinhvien", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { children: [
+  /* @__PURE__ */ jsxRuntimeExports.jsx(HashRouter, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Index, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/features", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Features, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/guide", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Guide, {}) }),
